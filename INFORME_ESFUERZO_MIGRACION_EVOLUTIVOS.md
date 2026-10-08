@@ -14,7 +14,66 @@ Este informe detalla el esfuerzo estimado para migrar los evolutivos desarrollad
 
 ---
 
-## 2. Contexto del Proyecto
+## 2. Requisitos del Cliente
+
+Para poder iniciar y completar exitosamente la migración de los evolutivos, el cliente debe proporcionar los siguientes elementos:
+
+### 2.1 Ejecutables Delphi 6 con Evolutivos (CRÍTICO)
+
+**Requisito:** El cliente debe proporcionar los ejecutables compilados en Delphi 6 con todos los cambios evolutivos aplicados.
+
+**Importancia:** Estos ejecutables son el punto de partida fundamental y la referencia absoluta para las pruebas de validación. Sin ellos, no es posible garantizar la paridad funcional y visual entre la versión migrada a Delphi 13 y el comportamiento original esperado por el cliente.
+
+**Módulos requeridos:**
+- Admissions.exe (con evolutivos aplicados)
+- CursClin.exe (con evolutivos aplicados, si aplica)
+- Cualquier otro ejecutable que haya recibido evolutivos
+
+**Uso:** Cada funcionalidad evolutiva debe validarse comparando su comportamiento en Delphi 13 contra el ejecutable Delphi 6 correspondiente.
+
+### 2.2 Archivos Faltantes de los Evolutivos
+
+**Requisito:** El cliente debe proporcionar los archivos faltantes identificados en el análisis de DFM/PAS.
+
+**Archivos faltantes (12 en total):**
+
+#### DFM sin PAS correspondiente (11 archivos):
+1. `Admissions/Barbara/PrintRtfLogo.dfm` → requiere `PrintRtfLogo.pas`
+2. `Admissions/Fitxes/FitxaAmbulancies.dfm` → requiere `FitxaAmbulancies.pas`
+3. `agenda paciente/agendaimpriu.dfm` → requiere `agendaimpriu.pas`
+4. `Data/DataCMBD.dfm` → requiere `DataCMBD.pas`
+5. `Data/DataConsultesSQL.dfm` → requiere `DataConsultesSQL.pas`
+6. `Data/DataEducacio.dfm` → requiere `DataEducacio.pas`
+7. `Data/DataEscales.dfm` → requiere `DataEscales.pas`
+8. `Data/DataHl7Log.dfm` → requiere `DataHl7Log.pas`
+9. `Data/DataOrtesis.dfm` → requiere `DataOrtesis.pas`
+10. `NovaHCE/HCEListenerAdmissions.dfm` → requiere `HCEListenerAdmissions.pas`
+11. `printselect/Unit3.dfm` → requiere `Unit3.pas`
+
+#### PAS que requiere DFM (1 archivo):
+1. `Admissions/Fitxes/FitxaHistorial.pas` → requiere `FitxaHistorial.dfm`
+
+**Importancia:** Sin estos archivos faltantes, la migración no puede completarse correctamente. Son componentes visuales y datamodules necesarios para el funcionamiento de los evolutivos.
+
+**Fuentes alternativas:** Si el cliente no tiene estos archivos disponibles, se pueden buscar en:
+- `C:\Proyectos\Evolutivos Originales` (versión D6 congelada del cliente)
+- `C:\Proyectos\Originales` (código base completo en Delphi 6)
+
+### 2.3 Acceso a Entorno de Pruebas
+
+**Requisito:** El cliente debe proporcionar acceso a un entorno de pruebas con la base de datos actualizada.
+
+**Importancia:** Necesario para validar las consultas, conexiones y funcionalidades de los evolutivos durante y después de la migración.
+
+### 2.4 Documentación de Evolutivos (Opcional pero Recomendado)
+
+**Requisito:** Documentación o especificaciones funcionales de los evolutivos entregados.
+
+**Importancia:** Facilita la comprensión de los nuevos flujos y funcionalidades durante la migración y validación.
+
+---
+
+## 3. Contexto del Proyecto
 
 ### 2.1 Situación Actual
 
@@ -22,7 +81,7 @@ Este informe detalla el esfuerzo estimado para migrar los evolutivos desarrollad
 - **Evolutivos entregados:** Desarrollo paralelo del cliente en Delphi 6 durante la migración (C:\Proyectos\Guttmann\Evolutivos)
 - **Objetivo:** Integrar los evolutivos en el proyecto base ya migrado a Delphi 13
 
-### 2.2 Rutas de Referencia
+### 3.1 Rutas de Referencia
 
 | Ruta | Propósito |
 |------|-----------|
@@ -34,8 +93,6 @@ Este informe detalla el esfuerzo estimado para migrar los evolutivos desarrollad
 | C:\Proyectos\GuttmannD13 | Ejecutables migrados Delphi 13 |
 
 **Nota sobre "counterpart":** Se denomina "counterpart" a aquellos archivos de los evolutivos que tienen una versión equivalente ya migrada en el proyecto cursProd. Por ejemplo, si el evolutivo incluye una modificación en `FitxaGestioLlits.pas` y este archivo ya existe migrado en cursProd, se puede aprovechar la solución de migración ya aplicada en cursProd para el evolutivo, lo que reduce el esfuerzo. Los módulos sin counterpart son aquellos que son completamente nuevos y no tienen equivalente en el proyecto base migrado, por lo que requieren migración completa desde cero.
-
-**Requisito crítico - Ejecutables Delphi 6 con evolutivos:** Es imprescindible que el cliente proporcione los ejecutables compilados en Delphi 6 con todos los cambios evolutivos aplicados. Estos ejecutables son el punto de partida fundamental y la referencia absoluta para las pruebas de validación. Sin ellos, no es posible garantizar la paridad funcional y visual entre la versión migrada a Delphi 13 y el comportamiento original esperado por el cliente. Cada funcionalidad evolutiva debe validarse comparando su comportamiento en Delphi 13 contra el ejecutable Delphi 6 correspondiente.
 
 ---
 
