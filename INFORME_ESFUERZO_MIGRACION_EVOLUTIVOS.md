@@ -59,18 +59,6 @@ Para poder iniciar y completar exitosamente la migración de los evolutivos, el 
 - `C:\Proyectos\Evolutivos Originales` (versión D6 congelada del cliente)
 - `C:\Proyectos\Originales` (código base completo en Delphi 6)
 
-### 2.3 Acceso a Entorno de Pruebas
-
-**Requisito:** El cliente debe proporcionar acceso a un entorno de pruebas con la base de datos actualizada.
-
-**Importancia:** Necesario para validar las consultas, conexiones y funcionalidades de los evolutivos durante y después de la migración.
-
-### 2.4 Documentación de Evolutivos (Opcional pero Recomendado)
-
-**Requisito:** Documentación o especificaciones funcionales de los evolutivos entregados.
-
-**Importancia:** Facilita la comprensión de los nuevos flujos y funcionalidades durante la migración y validación.
-
 ---
 
 ## 3. Contexto del Proyecto
