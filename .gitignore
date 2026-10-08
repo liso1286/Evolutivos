@@ -1,0 +1,40 @@
+# Delphi compiled files
+*.dcu
+*.exe
+*.dll
+*.bpl
+*.dcp
+*.so
+*.dylib
+
+# Delphi local/project temp files
+*.local
+*.identcache
+*.tvsconfig
+*.dproj.local
+*.groupproj.local
+*.deployproj
+*.rsm
+*.tlb
+*.map
+
+# Logs
+*.log
+
+# IDE history
+__history/
+__recovery/
+
+# Temp files
+*.tmp
+*.temp
+*.bak
+*.bak2
+*.~*
+
+# Scripts auxiliares temporales (no se commitear)
+Scripts/**/*.ps1
+Scripts/**/*.py
+Scripts/**/*.sql
+Scripts/**/*.out
+!Scripts/.gitkeep
